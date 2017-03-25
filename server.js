@@ -10,17 +10,20 @@ var Article_one = {
     heading : 'The first Article',
     date : 'Sep 5, 2016',
 };
+function createTemplate(data){
+    var title = data.title;
+    var heading = data.heading;
+    var content1 = data.content1;
+    var content2 = data.content2;
 var htmlTemplate = "   <html> \
    \
    <head> 
-       <title>  \ 
-           $(title)  
-       </title> \ 
-       <meta name = "viewport" content = "width = device-width, initial-scale = 1"/> \ 
-       <link href="/ui/style.css" rel="stylesheet" /> \ 
+       <title>  \
+           $(title) \  
+       </title> \
+       <meta name = "viewport" content = "width = device-width, initial-scale = 1"/> \
+       <link href="/ui/style.css" rel="stylesheet" /> \
        </head> \
-   
-   
    <body>
        <div>
        <div>
@@ -36,17 +39,19 @@ var htmlTemplate = "   <html> \
            </p>        
        </div>
        </div>
-       
-       <div>
+       <div> 
            <p>
                $(content2)
-           </p>        
-       </div>
-       
-       </div>
-   </body>
-      
-</html> " ;
+           </p> \         
+       </div> \ 
+         \ 
+       </div>   
+   </body> \
+      \
+</html> " 
+return htmlTemplate;
+    
+}
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
@@ -60,7 +65,7 @@ app.get('/ui/madi.png', function (req, res) {
 });
 
 app.get('/article-one', function (req, res) {
-  res.sendFile(path.join(__dirname, 'article-one.html'));
+  res.send(createTemplate(Article_one));
 });
 
 app.get('/article2',function(req,res){
